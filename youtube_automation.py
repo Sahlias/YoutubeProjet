@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 class YouTubeAutomation:
+    
     def __init__(self):
         # Initialiser le navigateur Firefox
         self.driver = webdriver.Firefox()
@@ -38,7 +39,7 @@ class YouTubeAutomation:
 
     def login(self, email, password):
         # Attendre que la superposition disparaisse
-        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located((By.CLASS_NAME, "opened")))
+        WebDriverWait(self.driver, 60).until(EC.invisibility_of_element_located((By.CLASS_NAME, "opened")))
 
         # Cliquer sur le bouton "Se connecter"
         self.click_element(By.XPATH, "/html/body/ytd-app/div[1]/div/ytd-masthead/div[4]/div[3]/div[2]/ytd-button-renderer/yt-button-shape/a")
@@ -59,7 +60,3 @@ class YouTubeAutomation:
         time.sleep(2)
         self.click_element(By.CSS_SELECTOR, "ytd-compact-link-renderer.style-scope:nth-child(4) > a:nth-child(1)")
         time.sleep(2)
-
-
-
-    

@@ -1,8 +1,13 @@
 from youtube_automation import YouTubeAutomation
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 import time
 
-class VideoUploader(YouTubeAutomation):
+
+class VideoUploaderPublic(YouTubeAutomation):
+    
     def upload_video(self, file_path):
         # Click the creation button and select the video upload option
         self.click_element(By.CSS_SELECTOR, "yt-icon-button.ytd-topbar-menu-button-renderer")
@@ -30,32 +35,15 @@ class VideoUploader(YouTubeAutomation):
         self.click_element(By.ID, "next-button")
         time.sleep(1)
     
-        # vidéo private
-        self.click_element(By.ID, "private-radio-button")
-        self.click_element(By.CSS_SELECTOR, "#done-button")
-        time.sleep(5)
-        self.click_element(By.XPATH,'//*[@id="close-button"]/ytcp-button-shape/button/yt-touch-feedback-shape/div/div[2]')
-        time.sleep(5)
-
-
-        # # vidéo Unlisted
-        self.click_element(By.XPATH, '//*[@id="privacy-radios"]/tp-yt-paper-radio-button[2]')
-
-        self.click_element(By.CSS_SELECTOR, "#done-button")
-        time.sleep(5)
-
-        self.click_element(By.XPATH,'//*[@id="close-button"]/ytcp-button-shape/button/yt-touch-feedback-shape/div/div[2]')
-        time.sleep(5)
-        self.back()
-        # # vidéo Public
+        # # vidéo Public:
         self.click_element(By.XPATH, '//*[@id="privacy-radios"]/tp-yt-paper-radio-button[3]')
-        # time.sleep(25)
+        time.sleep(2)
         self.click_element(By.CSS_SELECTOR, "#done-button")
-        time.sleep(5)
+        time.sleep(1)
 
-        self.click_element(By.XPATH,'//*[@id="close-button"]/ytcp-button-shape/button/yt-touch-feedback-shape/div/div[2]')
-        time.sleep(5)
-  
-
+        self.click_element(By.XPATH, '//*[@id="close-button"]/ytcp-button-shape/button/yt-touch-feedback-shape/div/div[2]')
         
         return video_info_link
+
+        
+        
